@@ -1,0 +1,3 @@
+[submodule "PythonPrototypLib"]
+	path = PythonPrototypLib
+	url = ssh://git@git.ebg-vaterstetten.de:2442/roboter_internal/PythonPrototypLib.git
