@@ -7,6 +7,20 @@
     },
     "micropico.syncFolder": "",
     "micropico.openOnStart": true,
+    "micropico.pyIgnore": [
+        "**/.picowgo",
+        "**/.micropico",
+        "**/.vscode",
+        "**/.gitignore",
+        "**/.git",
+        "**/.DS_Store",
+        "**/project.pico-go",
+        "**/env",
+        "**/venv",
+        "**/.venv",
+        "**/.idea",
+        "**/PythonPrototypLib"
+    ],
     "python.analysis.typeshedPaths": [
         "~/.micropico-stubs/included"
     ],
