@@ -4,7 +4,7 @@ from math import pi
 
 DT = 0.0011
 MOTOR_VELOCITY = 0.02
-DATA_FILE_PATH = "/line_follower/data_collection/straight_line/raw_collected_data/data.txt"
+DATA_FILE_PATH = "/line_follower/data_collection/line_detection/raw_collected_data/data.txt"
 ROBI_TRACK_WIDTH = 0.147  # m
 
 IR_DISTANCE = ROBI_TRACK_WIDTH * pi / 2  # The total distance that the ir sensor travels while the robi turns
