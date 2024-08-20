@@ -1,10 +1,13 @@
 import math
 from ast import literal_eval as make_tuple
-from collect_data import DT, IR_DISTANCE, ROBI_TRACK_WIDTH, CONFIG_KEY
 import matplotlib.pyplot as plt
 import numpy as np
 
-TAPE_WIDTH = 0.015  # m
+from globals import CONFIG_KEY, TAPE_WIDTH, DT, calculate
+
+res = calculate(f"../robi_configs/robi_{CONFIG_KEY}.json")
+IR_DISTANCE = res.ir_distance
+ROBI_TRACK_WIDTH = res.track_width
 
 data = []
 with open(f"raw_collected_data/data_{CONFIG_KEY}.txt", "r") as f:
@@ -29,7 +32,10 @@ plt.axvline(x=0.5 * 180, color='black', linestyle='--', label='90° - Middle')
 
 plt.xlabel('Degrees turned')
 plt.ylabel('IR sensors raw values')
+plt.ylim(0, 1024)
+plt.xlim(0, 180)
 plt.grid(True)
+plt.minorticks_on()
 plt.legend()
 # plt.show()
 plt.savefig(f'processed_data/data_{CONFIG_KEY}.png', dpi=300)
