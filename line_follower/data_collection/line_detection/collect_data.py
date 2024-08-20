@@ -1,14 +1,21 @@
 import time
 
+from json import load
 from math import pi
+
+CONFIG_KEY = "0"
+
+with open(f"/line_follower/data_collection/robi_configs/robi_{CONFIG_KEY}.json", "r") as c:
+    config = load(c)
 
 DT = 0.0011
 MOTOR_VELOCITY = 0.02
-DATA_FILE_PATH = "/line_follower/data_collection/line_detection/raw_collected_data/data.txt"
-ROBI_TRACK_WIDTH = 0.147  # m
+DATA_FILE_PATH = f"/line_follower/data_collection/line_detection/raw_collected_data/data_{CONFIG_KEY}.txt"
+ROBI_TRACK_WIDTH = config["track_width"]  # m
 
 IR_DISTANCE = ROBI_TRACK_WIDTH * pi / 2  # The total distance that the ir sensor travels while the robi turns
 TURN_TIME = IR_DISTANCE / MOTOR_VELOCITY
+
 
 def main():
     from Robi42Lib.robi42 import Robi42

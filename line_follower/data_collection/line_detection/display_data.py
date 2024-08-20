@@ -1,13 +1,13 @@
 import math
 from ast import literal_eval as make_tuple
-from collect_data import DT, IR_DISTANCE, ROBI_TRACK_WIDTH
+from collect_data import DT, IR_DISTANCE, ROBI_TRACK_WIDTH, CONFIG_KEY
 import matplotlib.pyplot as plt
 import numpy as np
 
 TAPE_WIDTH = 0.015  # m
 
 data = []
-with open("raw_collected_data/data.txt", "r") as f:
+with open(f"raw_collected_data/data_{CONFIG_KEY}.txt", "r") as f:
     for line in f.read().strip().splitlines():
         data.append(make_tuple(line))
 
@@ -32,4 +32,4 @@ plt.ylabel('IR sensors raw values')
 plt.grid(True)
 plt.legend()
 # plt.show()
-plt.savefig('processed_data/data.png', dpi=300)
+plt.savefig(f'processed_data/data_{CONFIG_KEY}.png', dpi=300)

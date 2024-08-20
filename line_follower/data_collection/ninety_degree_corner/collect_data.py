@@ -1,8 +1,9 @@
 import time
 
+CONFIG_KEY = "0"
 DT = 0.0011
 MOTOR_VELOCITY = 0.02
-DATA_FILE_PATH = "/line_follower/data_collection/ninety_degree_corner/raw_collected_data/data.txt"
+DATA_FILE_PATH = f"/line_follower/data_collection/ninety_degree_corner/raw_collected_data/data_{CONFIG_KEY}.txt"
 DISTANCE_TO_TAPE = 0.1  # Distance from the contact patch of the wheel to the tape of the 90° corner.
 
 DRIVE_TIME = DISTANCE_TO_TAPE / MOTOR_VELOCITY
