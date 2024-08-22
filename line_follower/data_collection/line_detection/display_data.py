@@ -10,9 +10,19 @@ IR_DISTANCE = res.ir_distance
 ROBI_TRACK_WIDTH = res.track_width
 
 data = []
-with open(f"raw_collected_data/data_{CONFIG_KEY}.txt", "r") as f:
-    for line in f.read().strip().splitlines():
-        data.append(make_tuple(line))
+with open(f"raw_collected_data/data_{CONFIG_KEY}.bin", "rb") as f:
+    while True:
+        byte_data = f.read(4)
+        if not byte_data:
+            break
+
+        combined = int.from_bytes(byte_data, byteorder='big')
+
+        left = (combined >> 20) & 0x3FF
+        middle = (combined >> 10) & 0x3FF
+        right = combined & 0x3FF
+
+        data.append([left, middle, right])
 
 x_values = np.arange(0, DT * len(data), DT)
 x_scaled = x_values / (DT * len(data))
