@@ -25,7 +25,7 @@ def main():
     open(DATA_FILE_PATH, "wb").close()
     f = open(DATA_FILE_PATH, "ab")
 
-    time.sleep(3)
+    time.sleep(5)
 
     def timer_callback(_: Timer):
         rv = r.ir_sensors.read_raw_values()
