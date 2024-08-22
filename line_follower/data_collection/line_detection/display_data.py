@@ -1,13 +1,12 @@
 import math
-from ast import literal_eval as make_tuple
 import matplotlib.pyplot as plt
 import numpy as np
 
-from globals import CONFIG_KEY, TAPE_WIDTH, DT, calculate
+from globals import CONFIG_KEY, TAPE_WIDTH, DT_MS, load
 
-res = calculate(f"../robi_configs/robi_{CONFIG_KEY}.json")
-IR_DISTANCE = res.ir_distance
+res = load(f"../robi_configs/robi_{CONFIG_KEY}.json")
 ROBI_TRACK_WIDTH = res.track_width
+DT = DT_MS / 1000
 
 data = []
 with open(f"raw_collected_data/data_{CONFIG_KEY}.bin", "rb") as f:
@@ -33,11 +32,12 @@ plt.plot(x_scaled * 180, [d[0] for d in data], linestyle='-', label='Left')
 plt.plot(x_scaled * 180, [d[1] for d in data], linestyle='-', label='Middle')
 plt.plot(x_scaled * 180, [d[2] for d in data], linestyle='-', label='Right')
 
-tape_start = (IR_DISTANCE / 2 - TAPE_WIDTH / 2) / (ROBI_TRACK_WIDTH * math.pi / 2)
-tape_end = (IR_DISTANCE / 2 + TAPE_WIDTH / 2) / (ROBI_TRACK_WIDTH * math.pi / 2)
+tape_angle = math.atan(TAPE_WIDTH / 2 / res.ir_wheel_axle_distance) / math.pi * 180
+tape_start = 90 - tape_angle
+tape_end = 90 + tape_angle
 
-plt.axvline(x=tape_start * 180, color='black', linestyle='-', label='Tape')
-plt.axvline(x=tape_end * 180, color='black', linestyle='-')
+plt.axvline(x=tape_start, color='black', linestyle='-', label='Tape')
+plt.axvline(x=tape_end, color='black', linestyle='-')
 plt.axvline(x=0.5 * 180, color='black', linestyle='--', label='90° - Middle')
 
 plt.xlabel('Degrees turned')
